@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "knex": "knex",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -13,5 +14,9 @@
     "express": "^4.15.4",
     "knex": "^0.13.0",
     "pg": "^7.3.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.8.2",
+    "nodemon": "^1.12.1"
   }
 }
