@@ -12,4 +12,32 @@ router.get('/colors', (req, res, next) => {
     });
 });
 
+router.get('/colors/count', (req, res, next) => {
+  knex('colors')
+    .count('id')
+    .first()
+    .then(num => {
+      num.count = Number.parseInt(num.count);
+      res.send(num);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
+router.get('/colors/:start/:limit', (req, res, next) => {
+  const start = req.params.start;
+  const limit = req.params.limit;
+
+  knex('colors')
+    .offset(start)
+    .limit(limit)
+    .then(colors => {
+      res.send(colors);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 module.exports = router;
