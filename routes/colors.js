@@ -84,7 +84,7 @@ router.get('/family', (req, res, next) => {
 
       for (let i = 0; i < colors.length; i++) {
         // define red
-        if (fam === 'red' && rgbValues[i].r > 200 && rgbValues[i].g < 110 && rgbValues[i].b < 110) {
+        if (fam === 'red' && rgbValues[i].r > 200 && rgbValues[i].g < 95 && rgbValues[i].b < 95) {
           matches.push(colors[i]);
         }
 
@@ -119,7 +119,7 @@ router.get('/family', (req, res, next) => {
         }
 
         // define gray
-        if (fam === 'gray' && rgbValues[i].r <= rgbValues[i].g  + 5 && rgbValues[i].r >= rgbValues[i].g  - 5 && rgbValues[i].b <= rgbValues[i].r + 5 && rgbValues[i].b >= rgbValues[i].r - 5) {
+        if (fam === 'gray' && rgbValues[i].r <= rgbValues[i].g  + 15 && rgbValues[i].r >= rgbValues[i].g  - 15 && rgbValues[i].b <= rgbValues[i].r + 15 && rgbValues[i].b >= rgbValues[i].r - 15) {
           matches.push(colors[i]);
         }
       }

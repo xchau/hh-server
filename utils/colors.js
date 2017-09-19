@@ -10,7 +10,7 @@ const createColor = () => {
   return color;
 }
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 200; i++) {
   colors.push({
     id: i + 1,
     hex: createColor()
