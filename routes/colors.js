@@ -112,6 +112,16 @@ router.get('/family', (req, res, next) => {
         if (fam === 'orange' && rgbValues[i].r > 200 && rgbValues[i].g > 150 &&  rgbValues[i].g < 200 && rgbValues[i].b < 20) {
           matches.push(colors[i]);
         }
+
+        // define brown
+        if (fam === 'brown' && rgbValues[i].r > 120 && rgbValues[i].r < 200 && rgbValues[i].g > 65 && rgbValues[i].g < 115 && rgbValues[i].b < 70) {
+          matches.push(colors[i]);
+        }
+
+        // define gray
+        if (fam === 'gray' && rgbValues[i].r <= rgbValues[i].g  + 5 && rgbValues[i].r >= rgbValues[i].g  - 5 && rgbValues[i].b <= rgbValues[i].r + 5 && rgbValues[i].b >= rgbValues[i].r - 5) {
+          matches.push(colors[i]);
+        }
       }
 
       res.send(matches);
