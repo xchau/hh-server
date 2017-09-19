@@ -40,4 +40,18 @@ router.get('/colors/:start/:limit', (req, res, next) => {
     });
 });
 
+router.get('/color/:id', (req, res, next) => {
+  const id = req.params.id;
+
+  knex('colors')
+    .where('id', id)
+    .first()
+    .then(color => {
+      res.send(color);
+    })
+    .catch(err => {
+      next(err);
+    });
+});
+
 module.exports = router;
