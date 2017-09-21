@@ -104,15 +104,19 @@ router.get('/color/:id', (req, res, next) => {
 router.get('/search', (req, res, next) => {
   const color = '#' + req.query.color;
 
+  console.log(req.query.color, color);
+
   knex('colors')
     .where('hex', 'ILIKE', `${color}%`)
     .then(colors => {
+      console.log('checking..');
       res.send({
         count: colors.length,
         colors: colors
       });
     })
     .catch(err => {
+      console.log('errorriringggg');
       next(err);
     });
 });
