@@ -4,27 +4,31 @@ const knex = require('../knex');
 const convertHex = require('../utils/convertHex');
 
 router.get('/colors', (req, res, next) => {
-  knex('colors')
-    .orderBy('id', 'ASC')
-    .then(colors => {
-      res.send(colors);
-    })
-    .catch(err => {
-      next(err);
-    });
-});
+  const limit = Number.parseInt(req.query.limit);
+  const start = limit * (Number.parseInt(req.query.page) - 1);
+  const family = req.query.family;
+  const data = {};
 
-router.get('/colors/count', (req, res, next) => {
-  knex('colors')
-    .count('id')
-    .first()
-    .then(num => {
-      num.count = Number.parseInt(num.count);
-      res.send(num);
-    })
-    .catch(err => {
-      next(err);
-    });
+  if (!family) {
+    knex('colors')
+      .then(allColors => {
+        data.count = allColors.length;
+
+        return knex('colors')
+          .offset(start)
+          .limit(limit);
+      })
+      .then(colors => {
+        data.colors = colors;
+        res.send(data);
+      })
+      .catch(err => {
+        next(err);
+      });
+  }
+  else {
+
+  }
 });
 
 router.get('/colors/:start/:limit', (req, res, next) => {
